@@ -15,18 +15,8 @@ code {
 
 
 /* Components Structure */
-.managed-component {
-  outline: 1px solid red;
-  padding: 2em;
-  margin-bottom: 1em;
-  font-size: 1em;
-}
-
-.managed-component h2 {
-  text-align: center;
-  font-size: 1.5em;
-}
-
-.managed-component h1 {
-  font-size: 1em;
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
 }

@@ -19,9 +19,10 @@ export const CurrentQuestionZustand = () => {
   return (
     <div className="managed-component">
       {/* Question tilte */}
+
       <h1>Question: {question.questionText}</h1>
       {/* radio button answers  and check if it is correct, if it is correct, show the correct emoji✅, wrong emoji❌*/}
-      <div>
+      <div className="answer-options">
         {question.options.map(
           (
             option,
@@ -38,7 +39,7 @@ export const CurrentQuestionZustand = () => {
                 name="radio-btn"
                 value={option}
                 onChange={submitAnswer(question.id, index)}
-              //checked={value === option}
+                //checked={value === option}
               />
               {option}
             </label>
