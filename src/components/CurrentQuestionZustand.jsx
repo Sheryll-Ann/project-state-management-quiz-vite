@@ -1,4 +1,4 @@
-import useQuizStore from "../stores/useQuizStore"; // Adjust the path accordingly
+import useQuizStore from "../stores/useQuizStore";
 
 export const CurrentQuestionZustand = () => {
   const questions = useQuizStore((state) => state.questions);
@@ -9,7 +9,7 @@ export const CurrentQuestionZustand = () => {
   const submitAnswer = useQuizStore((state) => state.submitAnswer);
   const goToNextQuestion = useQuizStore((state) => state.goToNextQuestion);
   const quizOver = useQuizStore((state) => state.quizOver);
-
+  const answers = useQuizStore((state) => state.answers);
   /*const { submitAnswer, goToNextQuestion, restart } = useQuizStore() infinite loop from Diego ?*/
 
   if (!question) {
@@ -19,7 +19,6 @@ export const CurrentQuestionZustand = () => {
   return (
     <div className="managed-component">
       {/* Question tilte */}
-
       <h1>Question: {question.questionText}</h1>
       {/* radio button answers  and check if it is correct, if it is correct, show the correct emoji✅, wrong emoji❌*/}
       <div className="answer-options">
