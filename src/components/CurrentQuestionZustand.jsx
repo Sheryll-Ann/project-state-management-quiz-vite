@@ -8,9 +8,8 @@ export const CurrentQuestionZustand = () => {
   const question = questions[currentQuestionIndex];
   const submitAnswer = useQuizStore((state) => state.submitAnswer);
   const goToNextQuestion = useQuizStore((state) => state.goToNextQuestion);
-  const quizOver = useQuizStore((state) => state.quizOver);
-  const answers = useQuizStore((state) => state.answers);
-  /*const { submitAnswer, goToNextQuestion, restart } = useQuizStore() infinite loop from Diego ?*/
+  // const quizOver = useQuizStore((state) => state.quizOver);
+  // const answers = useQuizStore((state) => state.answers);
 
   if (!question) {
     return <h1>Oh no! I could not find the current question!</h1>;
@@ -37,7 +36,7 @@ export const CurrentQuestionZustand = () => {
                 className="radio-button"
                 name="radio-btn"
                 value={option}
-                onChange={submitAnswer(question.id, index)}
+                // onChange={submitAnswer(question.id, index)}
                 //checked={value === option}
               />
               {option}
