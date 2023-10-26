@@ -50,7 +50,10 @@ const useQuizStore = create((set) => ({
   answers: [],
   currentQuestionIndex: 0,
   quizOver: false,
+  submitted: false,//when radio button not checked
 
+
+  //Function to store actual question on which user is and answer selected on that step into the state.
   submitAnswer: (questionId, answerIndex) => {
     const question = questions.find((q) => q.id === questionId);
 
@@ -72,22 +75,39 @@ const useQuizStore = create((set) => ({
         ...state.answers,
         {
           questionId,
-          answerIndex,
-          question,
-          answer: question.options[answerIndex],
-          isCorrect: question.correctAnswerIndex === answerIndex,
+          answerIndex,//submitted user answer
+          question,//question object containing array info
+          answer: question.options[answerIndex],//answer in form of corresponding text
+          isCorrect: question.correctAnswerIndex === answerIndex,//comparison btw right answer and user selection
         },
       ],
+      submitted: true,//radio button checked
     }));
   },
+
+  // Function that return the number of correct answers, isCorrect == true in the answers array
+  numberOfCorrectAnswers: () => {
+    set((state) => {
+      const correct = state.answers.filter((a) => (a.isCorrect === true)); // read in the answers array to find where is the isCorrect is true.
+      // map will a new array where only the answers are correct
+      // if we have an array with only the correct answers given, the number of elements will be equal to the correct answer from the user
+      return correct.length
+    })
+  },
+
   //Function to update quizOver from false to true when step is at final/step 6 
   // Else the function will increment the step by one going to next question
   goToNextQuestion: () => {
     set((state) => {
       if (state.currentQuestionIndex + 1 === state.questions.length) {
-        return { quizOver: true };
+        return {
+          quizOver: true
+        };
       } else {
-        return { currentQuestionIndex: state.currentQuestionIndex + 1 };
+        return {
+          submitted: false,// set radio button unchecked for next question
+          currentQuestionIndex: state.currentQuestionIndex + 1
+        };
       }
     });
   },
@@ -98,6 +118,7 @@ const useQuizStore = create((set) => ({
       answers: [],
       currentQuestionIndex: 0,
       quizOver: false,
+      submitted: false, // unchecked previously checked radio button
     });
   },
 }));
